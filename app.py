@@ -1,13 +1,15 @@
 import os
 if not os.path.exists('movies.pkl') or not os.path.exists('similarity.pkl'):
     exec(open('create_pickle.py').read())
+    
+import streamlit as st
+import pickle
+import requests
+
 movies = pickle.load(open('movies.pkl','rb'))
 movies_list = movies['title'].values
 similarity = pickle.load(open('similarity.pkl','rb'))
 
-import streamlit as st
-import pickle
-import requests
 # from dotenv import load_dotenv
 # load_dotenv()
 
