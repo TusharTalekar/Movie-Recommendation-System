@@ -1,7 +1,13 @@
+import os
+if not os.path.exists('movies.pkl') or not os.path.exists('similarity.pkl'):
+    exec(open('create_pickle.py').read())
+movies = pickle.load(open('movies.pkl','rb'))
+movies_list = movies['title'].values
+similarity = pickle.load(open('similarity.pkl','rb'))
+
 import streamlit as st
 import pickle
 import requests
-import os
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -24,9 +30,6 @@ def recommend(movie):
         recommended_movies_posters.append(fetch_poster(movie_id))
     return recommended_movies,recommended_movies_posters
 
-movies = pickle.load(open('movies.pkl','rb'))
-movies_list = movies['title'].values
-similarity = pickle.load(open('similarity.pkl','rb'))
 
 st.title('Movie recommender')
 
