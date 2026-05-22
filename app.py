@@ -8,11 +8,11 @@ similarity = pickle.load(open('similarity.pkl','rb'))
 import streamlit as st
 import pickle
 import requests
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 
 def fetch_poster(movie_id):
-    response = requests.get('https://api.themoviedb.org/3/movie/{}?api_key={}'.format(movie_id,os.getenv('API_KEY')))
+    response = requests.get('https://api.themoviedb.org/3/movie/{}?api_key={}'.format(movie_id,st.secrets["API_KEY"]))
 
     data = response.json()
     return 'https://image.tmdb.org/t/p/w500'+data['poster_path']
